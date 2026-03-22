@@ -32,15 +32,15 @@ class PostController extends Controller
     }
     public function show($post_id)
     {
-        $post = Post::findOrFail($post_id)->first();
+        $post = Post::findOrFail($post_id);
         return view('posts.show', ['post' => $post]);
     }
     public function edit($post_id)
     {
-        $post = Post::findOrFail($post_id)->first();
+        $post = Post::findOrFail($post_id);
         return view('posts.edit', ['post' => $post]);
     }
-    public function update(Request $request)
+    public function update(Request $request , $post_id)
     {
         $request->validate([
             'username' => 'required|max:50',
@@ -48,7 +48,7 @@ class PostController extends Controller
             'message' => 'required|string'
         ]);
 
-        $currentPost = Post::findOrFail($request->post_id);
+        $currentPost = Post::findOrFail($post_id);
         $currentPost->username = $request->username;
         $currentPost->title = $request->title;
         $currentPost->message = $request->message;
