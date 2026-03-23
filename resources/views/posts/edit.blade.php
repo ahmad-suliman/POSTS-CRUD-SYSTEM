@@ -24,7 +24,7 @@
                             @error('message')
                                 <p class="text-center text-danger">{{ $message }}</p>
                             @enderror
-                            <input type="hidden" name="post_id" value="{{ $post->id }}">
+                           
                             <div class="mb-4">
                                 <label for="username" class="form-label fw-semibold">Name</label>
                                 <input class="form-control form-control-lg" type="text" name="username" id="username"
