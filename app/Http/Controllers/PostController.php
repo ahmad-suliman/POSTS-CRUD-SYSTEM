@@ -47,12 +47,13 @@ class PostController extends Controller
             'title' => 'required|string|max:100',
             'message' => 'required|string'
         ]);
-
-        $currentPost = Post::findOrFail($post_id);
-        $currentPost->username = $request->username;
-        $currentPost->title = $request->title;
-        $currentPost->message = $request->message;
-        $currentPost->save();
+        $post = Post::findOrFail($post_id);
+        $post->update([
+            'username'=>$request->username,
+            'title'=>$request->title,
+            'message'=>$request->message,
+        ]);
+     
         return redirect()->route('posts.index')->with('update', 'post update successfuly');
     }
     public function destroy($post_id)
